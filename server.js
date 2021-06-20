@@ -6,6 +6,10 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init Middleware
+//    used to use app.use(bodyParser.json()) , we can now just use experess.json() should allow us to get the data req.body from user.js
+app.use(express.json());
+
 app.get('/', (req, res) => res.send('API Running'));
 
 // Define Routes

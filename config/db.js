@@ -11,6 +11,7 @@ const db = config.get('mongoURI');
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 // we will use a arrow function since we nedd sth to call within our server.js
 const connectDB = async () => {
