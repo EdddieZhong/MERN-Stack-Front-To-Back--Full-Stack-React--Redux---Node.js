@@ -130,15 +130,35 @@ router.get('/user/:user_id', async (req, res) => {
       user: req.params.user_id,
     }).populate('user', ['name', 'avatar']);
 
-    if (!profile)
-      return res.status(400).json({ msg: 'There is no profile for this user' });
+    if (!profile) return res.status(400).json({ msg: 'Profile Not Found' });
 
     res.json(profile);
   } catch (err) {
     console.error(err.message);
+    //  there is some chance that we are passing in is not a real id but still be a valid Object ID
     if (err.kind == 'ObjectID') {
-      return res.status(400).json({ msg: 'There is no profile for this user' });
+      return res.status(400).json({ msg: 'Profile Not Found' });
     }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/profile
+// @desc     Delete profile, user & posts
+// @access   Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove user posts
+    // Remove profile
+    // Remove user
+    await Promise.all([
+      Profile.findOneAndRemove({ user: req.user.id }),
+      User.findOneAndRemove({ _id: req.user.id }),
+    ]);
+
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
