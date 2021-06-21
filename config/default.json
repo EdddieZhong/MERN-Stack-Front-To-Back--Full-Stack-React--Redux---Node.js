@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://airsind:airsind110@devconnector.y6usm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClintId": "6e53fcdb3d78119ffeed",
+  "githubToken": "fef904753f4df0a6a4ae5746875a249c417ad699"
 }
