@@ -1,3 +1,7 @@
+# Why redux:
+
+## Redux is a state manager, and it's used for larger application
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
